@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import {init} from './test';
 
-//console.log(addOne('add one ', 4));
-//console.log(addTwo('add two ', 4));
-//console.log(addTw(2));
+
 
 
 Vue.component('colour-swatch', {
