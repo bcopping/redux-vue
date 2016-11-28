@@ -1,4 +1,4 @@
 export default ({
-    name: 'test',
+    name: 'first name',
     colours: []
 })

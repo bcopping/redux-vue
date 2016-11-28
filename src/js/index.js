@@ -5,6 +5,7 @@ import reducer from './reducer'
 import logger from "redux-logger";
 import colorSwatches from './components/colourSwatches'
 import addColour from './components/addColour'
+import addName from './components/addName'
 
 const middleware = applyMiddleware(logger());
 const store = createStore(reducer, middleware);
@@ -59,6 +60,7 @@ colorsContainer = new Vue({
 	mixins: [actionMixin()],
 	data: {
 		colours: state.colours,
+    name: state.name,
 	}
 });
 
