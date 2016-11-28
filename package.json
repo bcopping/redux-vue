@@ -1,0 +1,36 @@
+{
+  "name": "redux-practice",
+  "version": "1.0.0",
+  "description": "playground of redux",
+  "main": "index.js",
+  "dependencies": {
+    "aliasify": "^2.1.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "brfs": "^1.4.3",
+    "browserify": "^13.1.1",
+    "copyfiles": "^1.0.0",
+    "fsmonitor": "^0.2.4",
+    "mkdirp": "^0.5.1",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "vue": "^2.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "vendor-js": "mkdirp ./dist/js/ && browserify -r vue/dist/vue > ./dist/js/vendor.js",
+    "browserify-js": "mkdirp ./dist/js/ && browserify --debug -t [babelify --presets [ es2015 ] ] -t aliasify -t brfs -x vue -x vue/dist/vue ./src/js/index.js --standalone testing > ./dist/js/dist.js",
+    "watcher": "fsmonitor -d './src' -s '+*.js' '+*.html' '!*/dist/*' npm run build",
+    "copy-files": "copyfiles -f ./src/index.html ./dist & npm run browserify-js & npm run vendor-js",
+    "build": "npm run copy-files",
+    "start": "npm run watcher",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Beej",
+  "license": "ISC",
+  "aliasify": {
+    "aliases": {
+      "vue": "vue/dist/vue"
+    }
+  }
+}
