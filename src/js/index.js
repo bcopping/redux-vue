@@ -1,48 +1,64 @@
 import Vue from 'vue';
-import {init} from './test';
 
+import {createStore, applyMiddleware} from 'redux';
+import reducer from './reducer'
+import logger from "redux-logger";
+import colorSwatches from './components/colourSwatches'
+import addColour from './components/addColour'
 
+const middleware = applyMiddleware(logger());
+const store = createStore(reducer, middleware);
 
+const defaultValues = [ 
+  { colour: 'red', availability: 'available' },
+  { colour: 'teal', availability:   'available'},
+  { colour: 'blue', availability:  'available' },
+  { colour: 'yellow', availability:  'available' },
+  { colour: 'green', availability:  'available' },
+  { colour: 'black', availability:  'available' } ]
 
-Vue.component('colour-swatch', {
-  props: ['colours'],
-  template: `
-    <div class="colourSwatchWrapper">
-        <div v-for="colour in colours" 
-        v-bind:class="colour.availability" 
-        v-text="colour.colour"></div>
-    </div>`,
+let state;
+let colorsContainer;	
+
+//sets up our initial list of colors from default
+store.dispatch({
+	type: "ADD_COLOURS", payload: defaultValues
+	 
 });
 
-var addColorData = {
-	availability: '',
-    	colour: '',
-}
+// set the state for initial load
+state = store.getState();
 
-Vue.component('add-colour', {
-	props: [],
-	template: `
-    <div class="add-colours">
-    	<span>Colour</span>
-        <input type="text" v-model="colour"><br />
-    	<span>availability</span>
-    	<input type="text" v-model="availability"><br />
-    	<button @click="addColour">Add Colour</button>
-    </div>`,
-    data: function(){
-    	return addColorData
-    },
+//listen to store changes
+store.subscribe(function () {
+  //update state and vue model
+  state = store.getState();
+  colorsContainer.colours = state.colours;
+
+});
+
+
+function actionMixin() {
+  return {
     methods: {
-    	addColour: function(){
-    		//console.log('add colour ', this.colour + ' add availability', this.availability);
-    		const payload = {colour: this.colour, availability : this.availability};
-    		//addColorAction("TEST_ACTION",  {colour: this.colour, availability : this.availability})
-    		this.$emit('action','ADD_COLOURS', payload);
-    	}
+      /**
+       * a generic event handler for dispatching events from internal components
+       */
+      dispatchAction: function (action, payload) {
+
+        console.log('action is ' + action + ' action payload is' + payload);
+
+        store.dispatch({type:action, payload:payload})
+      }
     }
+  }
+};
 
-})
+colorsContainer = new Vue({
+	el: '#app',
+	mixins: [actionMixin()],
+	data: {
+		colours: state.colours,
+	}
+});
 
-
-init();
-//module.exports = init;
