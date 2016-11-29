@@ -11,7 +11,7 @@
 	<div id="app">
 		<add-colour v-on:action="dispatchAction"></add-colour>
 		<add-name v-on:action="dispatchAction"></add-name>
-		<colour-swatch :colours="colours" ></colour-swatch>
+		<colour-swatch v-on:action="dispatchAction" :colours="colours" :selected="selected" ></colour-swatch>
 	</div>
 
 </body>
