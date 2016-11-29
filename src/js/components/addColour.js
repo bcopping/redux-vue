@@ -1,6 +1,6 @@
 var addColorData = {
-	availability: null,
-    	colour: '',
+	availability: '',
+    colour: '',
 }
 
 //add color component
