@@ -1,12 +1,11 @@
 import Vue from 'vue';
-
 import {createStore, applyMiddleware} from 'redux';
-import initialState from './initialState';
 import reducer from './reducer'
 import logger from "redux-logger"
 import colorSwatches from './components/colourSwatches'
 import addColour from './components/addColour'
 import addName from './components/addName'
+import initialState from './initialState';
 
 const middleware = applyMiddleware(logger());
 const store = createStore(reducer, middleware);
@@ -27,7 +26,7 @@ state = store.getState();
 store.subscribe(function () {
   //update state and vue model
   state = store.getState();
-  colorsContainer.colours = state.colours;
+  colorsContainer.coloursData = state.colours;
   colorsContainer.selected = state.selectedColour;
 
 });
@@ -53,10 +52,9 @@ colorsContainer = new Vue({
 	el: '#app',
 	mixins: [actionMixin()],
 	data: {
-		colours: state.colours,
+		coloursData: state.colours,
     	selected: state.selectedColour,
 		name: state.name,
-		
 	}
 });
 

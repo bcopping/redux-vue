@@ -1,5 +1,5 @@
 export default ({
-    name: 'first name',
+    name: 'blah',
     colours: [
         { colour: 'red', availability: 'available' },
         { colour: 'teal', availability:   'available'},
@@ -8,5 +8,5 @@ export default ({
         { colour: 'green', availability:  'available' },
         { colour: 'black', availability:  'available' }
     ],
-    selectedColour: 'red'
+    selectedColour: ''
 })

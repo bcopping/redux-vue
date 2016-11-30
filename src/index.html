@@ -3,22 +3,19 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Testing redux</title>
-	
+	<title>Testing redux</title>	
 </head>
 
 <body>
 	<div id="app">
 		<add-colour v-on:action="dispatchAction"></add-colour>
+		
 		<add-name v-on:action="dispatchAction"></add-name>
-		<colour-swatch v-on:action="dispatchAction" :colours="colours" :selected="selected" ></colour-swatch>
+		
+		<colour-swatch v-on:action="dispatchAction" v-bind:colours="coloursData" :selected="selected" ></colour-swatch>
 	</div>
 
 </body>
 <script type="text/javascript" src="js/vendor.js"></script>
 <script type="text/javascript" src="js/dist.js"></script>
-<script type="text/javascript">
-	
-	
-</script>
 </html>

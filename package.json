@@ -19,7 +19,7 @@
   "devDependencies": {},
   "scripts": {
     "vendor-js": "mkdirp ./dist/js/ && browserify -r vue/dist/vue > ./dist/js/vendor.js",
-    "browserify-js": "mkdirp ./dist/js/ && browserify --debug -t [babelify --presets [ es2015 ] ] -t aliasify -t brfs -x vue -x vue/dist/vue ./src/js/index.js --standalone testing > ./dist/js/dist.js",
+    "browserify-js": "mkdirp ./dist/js/ && browserify --debug -t [babelify --presets [ es2015 ] ] -t aliasify -t brfs -x vue -x vue/dist/vue ./src/js/index.js  > ./dist/js/dist.js",
     "watcher": "fsmonitor -d './src' -s '+*.js' '+*.html' '!*/dist/*' npm run build",
     "copy-files": "copyfiles -f ./src/index.html ./dist & npm run browserify-js & npm run vendor-js",
     "build": "npm run copy-files",
