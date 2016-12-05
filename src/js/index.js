@@ -2,7 +2,7 @@ import Vue from 'vue';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducer'
 import logger from "redux-logger"
-import colorSwatches from './components/colourSwatches'
+import colorSwatches from './components/colourSwatches/colourSwatches'
 import addColour from './components/addColour'
 import addName from './components/addName'
 import initialState from './initialState';

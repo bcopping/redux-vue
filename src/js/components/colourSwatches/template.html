@@ -1,0 +1,11 @@
+<div class="colourSwatchWrapper">
+        <div v-for="colour in colours" 
+        v-bind:class="colour.availability" 
+        v-text="colour.colour"
+        v-on:mouseover="onSwatchHover(colour.colour)"
+        v-on:mouseleave="onSwatchLeave"
+        v-on:click="onSwatchClick(colour.colour)"></div>
+
+        <br /><hr />
+        <div>Selected Color: <span v-show="notHovering">{{selectedColour}}</span><span>{{hoverColour}}</span></div>
+    </div>

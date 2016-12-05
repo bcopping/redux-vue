@@ -1,5 +1,8 @@
 import Vue from 'vue';
 
+const fs = require('fs');
+const template = fs.readFileSync(`${__dirname}/template.html`, 'utf8');
+
 var componentState = {
 	hoverColour: '',
     notHovering: true,
@@ -8,18 +11,7 @@ var componentState = {
 export default Vue.component('colour-swatch', {
   props: ['colours', 'selected'],
  
-  template: `
-    <div class="colourSwatchWrapper">
-        <div v-for="colour in colours" 
-        v-bind:class="colour.availability" 
-        v-text="colour.colour"
-        v-on:mouseover="onSwatchHover(colour.colour)"
-        v-on:mouseleave="onSwatchLeave"
-        v-on:click="onSwatchClick(colour.colour)"></div>
-
-        <br /><hr />
-        <div>Selected Color: <span v-show="notHovering">{{selectedColour}}</span><span>{{hoverColour}}</span></div>
-    </div>`,
+  template,
     data: function(){
     	return componentState
     },
